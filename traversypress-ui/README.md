@@ -15,6 +15,7 @@ https://mailtrap.io/?utm_source=yt&utm_medium=video&utm_campaign=traversy_media
 ## Shadcn UI
 
 https://ui.shadcn.com/
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
