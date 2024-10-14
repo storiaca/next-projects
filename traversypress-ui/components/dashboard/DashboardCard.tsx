@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Newspaper } from "lucide-react";
+
 import { LucideIcon } from "lucide-react";
 
 interface DashboardCardProps {
