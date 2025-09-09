@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import Button from "../components/Button";
+
+export const metadata: Metadata = {
+  title: "About Title",
+  description: "About page description",
+};
 
 export default function AboutPage() {
   return (

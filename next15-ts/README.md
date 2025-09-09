@@ -4,6 +4,10 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 <https://www.youtube.com/watch?v=wpU4skWT5SU&t=22s&ab_channel=RadisaWebRazvoj>
 
+## JSON Placeholder link
+
+<https://jsonplaceholder.typicode.com/>
+
 ## Getting Started
 
 First, run the development server:
