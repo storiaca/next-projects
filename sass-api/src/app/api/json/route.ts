@@ -36,6 +36,8 @@ const jsonSchemaToZod = (schema: any) => {
 
       const object = { name: { type: "string" } };
     //return z.object()
+
+    // 22:20
   }
 };
 
