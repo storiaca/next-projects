@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-
-//jsonplaceholder.typicode.com/
+import { notFound } from "next/navigation";
 
 async function fetchUser(id: string) {
   const response = await fetch(
@@ -23,6 +22,11 @@ export default async function SingleUser({
 }) {
   const { id } = await params;
   const user = await fetchUser(id);
+
+  if (!Object.keys(user).length) {
+    return notFound();
+  }
+
   return (
     <div className="p-4">
       <h1>Single user</h1>
