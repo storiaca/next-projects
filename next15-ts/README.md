@@ -4,6 +4,10 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 <https://www.youtube.com/watch?v=wpU4skWT5SU&t=22s&ab_channel=RadisaWebRazvoj>
 
+## Drugi deo
+
+<https://www.youtube.com/watch?v=CFaxQqlVZUY&t=47s&ab_channel=RadisaWebRazvoj>
+
 ## JSON Placeholder link
 
 <https://jsonplaceholder.typicode.com/>
