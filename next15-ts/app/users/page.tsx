@@ -1,5 +1,5 @@
+import { UsersComponent } from "@/components/UsersComponent";
 import { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Users page",
@@ -24,16 +24,7 @@ export default async function UsersPage() {
   return (
     <div>
       <h1>Users Page</h1>
-      {users.map((user: any) => {
-        return (
-          <div key={user.id}>
-            <p>Name: {user?.name}</p>
-            <p>Email: {user?.email}</p>
-            <p>Phone: {user?.phone}</p>
-            <Link href={`users/${user.id}`}>See Details</Link>
-          </div>
-        );
-      })}
+      <UsersComponent users={users} />
     </div>
   );
 }
