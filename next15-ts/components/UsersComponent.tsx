@@ -1,8 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export const UsersComponent = ({ users }: any) => {
+export const UsersComponent = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const response = await fetch("/api/user");
+      const usersResponse = await response.json();
+      setUsers(usersResponse);
+    };
+
+    getUsers();
+  }, []);
+
   return (
     <div>
       {users.map((user: any) => {

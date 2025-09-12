@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 export async function GET() {
   const secretKey = process.env.SECRET_API_KEY;
 
@@ -6,4 +8,15 @@ export async function GET() {
       "you-api-key": secretKey!,
     },
   });
+
+  if (!response.ok) {
+    return NextResponse.json({
+      error: "Error on server during users fetch",
+      status: 500,
+    });
+  }
+
+  const users = await response.json();
+
+  return NextResponse.json(users);
 }
