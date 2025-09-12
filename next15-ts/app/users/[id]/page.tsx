@@ -2,9 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 async function fetchUser(id: string) {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/users/${id}`
-  );
+  const url = process.env.ENV_URL;
+  const response = await fetch(`${url}/api/user/${id}`);
   const user = await response.json();
 
   return user;

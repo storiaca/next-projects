@@ -17,6 +17,7 @@ export async function GET() {
   }
 
   const users = await response.json();
+  // const filteredUsers = users.slice(0, 3);
 
   return NextResponse.json(users);
 }
