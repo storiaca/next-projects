@@ -8,7 +8,18 @@ type Todo = {
 };
 
 export default function TodoComponent() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([
+    {
+      id: 1,
+      title: "Prvi task",
+      completed: false,
+    },
+    {
+      id: 2,
+      title: "Drugi task",
+      completed: true,
+    },
+  ]);
   const [title, setTitle] = useState<string>("");
 
   function addTask(e: FormEvent) {
@@ -53,12 +64,12 @@ export default function TodoComponent() {
               <input
                 type="checkbox"
                 checked={todo.completed}
-                onChange={() => handleChangeTodo()}
+                onChange={() => handleChangeTodo(todo)}
                 id="taskChecked"
               />
               <button
                 onClick={() => handleDeleteTodo(todo.id)}
-                className="text-red-500"
+                className="text-red-500 border p-1 rounded cursor-pointer"
               >
                 Delete Todo
               </button>
@@ -69,3 +80,4 @@ export default function TodoComponent() {
     </div>
   );
 }
+// 33:43
