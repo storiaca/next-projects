@@ -1,3 +1,13 @@
+# NextJS 16 Full Course 2026 | Build and Deploy A Production Ready Job Application Tracker w/ MongoDB
+
+## Video
+
+<https://www.youtube.com/watch?v=vCIsrOGNhas>
+
+## Code github
+
+<https://github.com/machadop1407/job-application-tracker>
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -35,6 +45,3 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## Code github
-
-(https://github.com/machadop1407/job-application-tracker)
