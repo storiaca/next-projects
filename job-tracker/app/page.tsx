@@ -1,3 +1,4 @@
+import ImageTabs from "@/components/ImageTabs";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react'
 import Image from "next/image";
@@ -20,6 +21,8 @@ export default function Home() {
             <p className="text-sm text-muted-foreground">Free forever. No credit card require.</p>
           </div>
         </section>
+        {/* Hero Images Section with Tabs */}
+        <ImageTabs />
       </main>
     </div>
   );
