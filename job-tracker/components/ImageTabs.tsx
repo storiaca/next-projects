@@ -23,7 +23,8 @@ export default function ImageTabs() {
             {(Object.keys(TABS_CONFIG) as Tab[]).map((tab) => (
               <Button 
                 key={tab} 
-                variant={activeTab === tab ? "default" : "outline"} // Visual feedback
+                //variant={activeTab === tab ? "default" : "outline"} // Visual feedback
+                className={`rounded-lg px-6 py-3 text-sm font-sm font-medium transition-colors ${activeTab === tab ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
                 onClick={() => setActiveTab(tab)}
               >
                 {TABS_CONFIG[tab].label}
