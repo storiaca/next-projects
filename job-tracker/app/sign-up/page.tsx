@@ -30,12 +30,12 @@ export default function SignUpPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="password" className="text-gray-700">Password</Label>
-              <Input id="password" type="password" className="border-gray-300 focus:border-primary focus:ring-primary" placeholder="Password" required />
+              <Input id="password" type="password" className="border-gray-300 focus:border-primary focus:ring-primary" required />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full bg-primary hover:bg-primary/90">Sign Up</Button>
-            <p className="text-center text-sm text-gray-600">Already have an account? {" "} <Link href="/sign-in">Sign in</Link></p>
+            <p className="text-center text-sm text-gray-600">Already have an account? {" "} <Link href="/sign-in" className="font-medium text-primary hover:underline">Sign in</Link></p>
           </CardFooter>
         </form>
       </Card>
