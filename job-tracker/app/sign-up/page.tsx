@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, FormEvent } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -11,6 +11,24 @@ export default function SignUpPage() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  async function handleSumbit(e:FormEvent) {
+    e.preventDefault()
+
+    setError("")
+    setLoading(true)
+
+    try {
+      
+    } catch (error) {
+      setError("An unecpected error oocurred!")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return(
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
@@ -23,7 +41,7 @@ export default function SignUpPage() {
             Create an account to start tracking your job applications
           </CardDescription>
         </CardHeader>
-        <form className="space-y-4">
+        <form onSubmit={handleSumbit} className="space-y-4">
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-gray-700">Name</Label>
