@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { signUp } from "@/lib/auth/auth-client"
 
 export default function SignUpPage() {
   const [name, setName] = useState("")
@@ -22,7 +23,11 @@ export default function SignUpPage() {
     setLoading(true)
 
     try {
-      
+      await signUp.email({
+        name,
+        email,
+        password
+      })
     } catch (error) {
       setError("An unecpected error oocurred!")
     } finally {
