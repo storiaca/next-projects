@@ -1,12 +1,17 @@
 "use client"
 
+import { useState } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import Link from "next/link"
 
 export default function SignUpPage() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
   return(
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
       <Card className="w-full max-w-md border-gray-200 shadow-lg">
@@ -22,15 +27,15 @@ export default function SignUpPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-gray-700">Name</Label>
-              <Input id="name" type="text" className="border-gray-300 focus:border-primary focus:ring-primary" placeholder="John Doe" required />
+              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} type="text" className="border-gray-300 focus:border-primary focus:ring-primary" placeholder="John Doe" required />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-gray-700">Email</Label>
-              <Input id="email" type="email" className="border-gray-300 focus:border-primary focus:ring-primary" placeholder="john@example.com" required />
+              <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)}  type="email" className="border-gray-300 focus:border-primary focus:ring-primary" placeholder="john@example.com" required />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password" className="text-gray-700">Password</Label>
-              <Input id="password" type="password" className="border-gray-300 focus:border-primary focus:ring-primary" required />
+              <Input id="password" value={password} onChange={(e) => setPassword(e.target.value)}  type="password" className="border-gray-300 focus:border-primary focus:ring-primary" required />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
