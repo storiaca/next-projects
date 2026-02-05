@@ -13,3 +13,9 @@ export const auth = betterAuth({
     enabled: true
   }
 })
+
+export async function getSession(params:type) {
+  const result = await auth.api.getSession({
+    headers: await headers()
+  })
+}
