@@ -8,6 +8,10 @@
 
 <https://github.com/machadop1407/job-application-tracker>
 
+## Better auth
+
+<https://www.better-auth.com/docs>
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Start mongodb local
@@ -15,6 +19,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ```bash
 sudo systemctl start mongod
 ```
+
 ## Getting Started
 
 First, run the development server:
