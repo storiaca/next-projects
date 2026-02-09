@@ -1,5 +1,9 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IBoard extends Document {
-  name: string
+  name: string;
+  userId: string;
+  columns: mongoose.Types.ObjectId[];
+  createdAt: Date;
+  updateAt: Date;
 }
