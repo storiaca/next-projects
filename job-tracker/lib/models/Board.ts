@@ -7,3 +7,23 @@ export interface IBoard extends Document {
   createdAt: Date;
   updateAt: Date;
 }
+
+const BoardSchema = new Schema<IBoard>({
+  name: {
+    type: String,
+    required: true
+  }, 
+  userId: {
+    type: String,
+    required: true,
+    index: true
+  }, 
+  columns: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Column"
+    }
+  ]
+}, {
+  timestamps: true
+})
