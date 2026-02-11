@@ -19,14 +19,13 @@ export const auth = betterAuth({
     user: {
       create: {
         after: async (user) => {
-          if(user) {
-
-            await initializeUserBoard(user.id)
+          if (user.id) {
+            await initializeUserBoard(user.id);
           }
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 });
 
 export async function getSession() {

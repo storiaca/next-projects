@@ -6,22 +6,10 @@ const DEFAULT_COLUMNS = [
     name: "Wish List",
     order: 0,
   },
-  {
-    name: "Applied",
-    order: 1,
-  },
-  {
-    name: "Interviewing",
-    order: 2,
-  },
-  {
-    name: "Offer",
-    order: 3,
-  },
-  {
-    name: "Rejected",
-    order: 4,
-  },
+  { name: "Applied", order: 1 },
+  { name: "Interviewing", order: 2 },
+  { name: "Offer", order: 3 },
+  { name: "Rejected", order: 4 },
 ];
 
 export async function initializeUserBoard(userId: string) {
@@ -29,10 +17,7 @@ export async function initializeUserBoard(userId: string) {
     await connectDB();
 
     // Check if board already exists
-    const existingBoard = Board.findOne({
-      userId,
-      name: "Job Hunt",
-    });
+    const existingBoard = await Board.findOne({ userId, name: "Job Hunt" });
 
     if (existingBoard) {
       return existingBoard;
@@ -52,19 +37,17 @@ export async function initializeUserBoard(userId: string) {
           name: col.name,
           order: col.order,
           boardId: board._id,
-          jobApplication: []
-        }),
-      ),
+          jobApplication: [],
+        })
+      )
     );
 
     // Update the board with the new column IDs
-    board.columns = columns.map((col) => col._id)
+    board.columns = columns.map((col) => col._id);
+    await board.save();
 
-    // Save changes to Board collection
-    await board.save()
-
-    return board
-  } catch (error) {
-    throw error;
+    return board;
+  } catch (err) {
+    throw err;
   }
 }
