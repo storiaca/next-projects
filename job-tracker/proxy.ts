@@ -4,11 +4,11 @@ import { getSession } from "./lib/auth/auth";
 export default async function proxy(request: NextRequest) {
   const session = await getSession()
 
-  const isDashboard = request.nextUrl.pathname.startsWith('/dashboard')
+  // const isDashboard = request.nextUrl.pathname.startsWith('/dashboard')
 
-  if(isDashboard && !session?.user) {
-    return NextResponse.redirect(new URL("/sign-in", request.url))
-  }
+  // if(isDashboard && !session?.user) {
+  //   return NextResponse.redirect(new URL("/sign-in", request.url))
+  // }
 
   const isSignInPage = request.nextUrl.pathname.startsWith('/sign-in')
   const isSignUpPage = request.nextUrl.pathname.startsWith('/sign-up')
