@@ -2,6 +2,7 @@ import { getSession } from "@/lib/auth/auth";
 import connectDB from "@/lib/db";
 import { Board } from "@/lib/models";
 import { redirect } from "next/navigation";
+import KanbanBoard from "@/components/KanbanBoard";
 
 export default async function DashboardPage() {
   const session = await getSession();
@@ -17,7 +18,7 @@ export default async function DashboardPage() {
     name: "Job Hunt",
   });
 
-  console.log(board);
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -26,6 +27,7 @@ export default async function DashboardPage() {
           <h1 className="text-3xl font-bold text-black">{board.name}</h1>
           <p className="text-gray-600">Track your job applications</p>
         </div>
+        <KanbanBoard board={board} userId={session.user.id} />
       </div>
     </div>
   );
