@@ -1,8 +1,24 @@
 "use client";
 
 import { Board, Column } from "@/lib/models/models.types";
-import { Award, Calendar, CheckCircle2, Mic, XCircle } from "lucide-react";
+import {
+  Award,
+  Calendar,
+  CheckCircle2,
+  Mic,
+  MoreHorizontal,
+  MoreVertical,
+  Trash2,
+  XCircle,
+} from "lucide-react";
 import { Card, CardHeader, CardTitle } from "./ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
 
 interface KanbanBoardProps {
   board: Board;
@@ -47,14 +63,36 @@ function DroppableColumn({
   boardId: string;
 }) {
   console.log(column);
-  
+
   return (
-    <Card>
-      <CardHeader className={`${config.color}`}>
-        <div>
-          <div>{config.icon}
-            <CardTitle>{column.name}</CardTitle>
+    <Card className="min-w-[300px] flex-shrink-0 shadow-md p-0">
+      <CardHeader
+        className={`${config.color} text-white rounded-t-lg pb-3 pt-3`}
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {config.icon}
+            <CardTitle className="text-white text-base font-semibold">
+              {column.name}
+            </CardTitle>
           </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-6 w-6 text-white hover:bg-white/20"
+              >
+                <MoreVertical className="h-4 w-4"/>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem className="text-destructive">
+                <Trash2 className="mr-2 h-4 w-4"/>
+                Delete Colum
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </CardHeader>
     </Card>
