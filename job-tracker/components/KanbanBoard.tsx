@@ -1,17 +1,21 @@
-"use client"
+"use client";
 
-import { Board } from "@/lib/models/models.types"
+import { Board, Column } from "@/lib/models/models.types";
 import { Award, Calendar, CheckCircle2, Mic, XCircle } from "lucide-react";
 
 interface KanbanBoardProps {
-  board: Board,
-  userId: string
+  board: Board;
+  userId: string;
 }
 
-const COLUMN_CONFIG: Array<{color: string; icon: React.ReactNode}> = [
+interface ColConfig {
+  color: string; icon: React.ReactNode
+}
+
+const COLUMN_CONFIG: Array<ColConfig> = [
   {
     color: "bg-cyan-500",
-    icon: <Calendar className="h-4 w-4" />
+    icon: <Calendar className="h-4 w-4" />,
   },
   {
     color: "bg-purple-500",
@@ -29,12 +33,27 @@ const COLUMN_CONFIG: Array<{color: string; icon: React.ReactNode}> = [
     color: "bg-red-500",
     icon: <XCircle className="h-4 w-4" />,
   },
-]
+];
 
-export default function KanbanBoard({board, userId}: KanbanBoardProps) {
+function DroppableColumn({column, config, boardId}: column: Column, config: ColConfig, boardId: string) {
+
+}
+
+export default function KanbanBoard({ board, userId }: KanbanBoardProps) {
+  const columns = board.columns;
   return (
     <>
-    <h1>Kanban Board</h1>
+      <div>
+        <div>
+          {columns.map((col, key) => {
+            const config = COLUMN_CONFIG[key] || {
+              color: "bg-cyan-500",
+              icon: <Calendar className="h-4 w-4" />,
+            };
+            return <DroppableColumn key={key} column={col} config={config} boardId={board._id}/>;
+          })}
+        </div>
+      </div>
     </>
-  )
+  );
 }
