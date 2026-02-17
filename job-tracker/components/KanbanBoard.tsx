@@ -6,12 +6,11 @@ import {
   Calendar,
   CheckCircle2,
   Mic,
-  MoreHorizontal,
   MoreVertical,
   Trash2,
   XCircle,
 } from "lucide-react";
-import { Card, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +18,8 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
+import CreateJobApplication from "./CreateJobApplicationDialog";
+import CreateJobApplicationDialog from "./CreateJobApplicationDialog";
 
 interface KanbanBoardProps {
   board: Board;
@@ -65,7 +66,7 @@ function DroppableColumn({
   console.log(column);
 
   return (
-    <Card className="min-w-[300px] flex-shrink-0 shadow-md p-0">
+    <Card className="min-w-75 shrink-0 shadow-md p-0">
       <CardHeader
         className={`${config.color} text-white rounded-t-lg pb-3 pt-3`}
       >
@@ -83,18 +84,21 @@ function DroppableColumn({
                 size="icon"
                 className="h-6 w-6 text-white hover:bg-white/20"
               >
-                <MoreVertical className="h-4 w-4"/>
+                <MoreVertical className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem className="text-destructive">
-                <Trash2 className="mr-2 h-4 w-4"/>
+                <Trash2 className="mr-2 h-4 w-4" />
                 Delete Colum
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
       </CardHeader>
+      <CardContent className="space-y-2 pt-4 bg-gray-50/50 min-h-100 rounded-b-lg">
+        <CreateJobApplicationDialog columnId={column._id} boardId={boardId} />
+      </CardContent>
     </Card>
   );
 }
