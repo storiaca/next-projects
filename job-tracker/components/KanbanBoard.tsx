@@ -63,7 +63,6 @@ function DroppableColumn({
   config: ColConfig;
   boardId: string;
 }) {
-  console.log(column);
 
   return (
     <Card className="min-w-75 shrink-0 shadow-md p-0">

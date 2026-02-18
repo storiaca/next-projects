@@ -37,6 +37,16 @@ export default function CreateJobApplicationDialog({
 }: CreateJobApplicationDialogProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
@@ -50,7 +60,7 @@ export default function CreateJobApplicationDialog({
           <DialogTitle>Add Job Application</DialogTitle>
           <DialogDescription>Track a new job application</DialogDescription>
         </DialogHeader>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
