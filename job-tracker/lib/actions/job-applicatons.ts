@@ -64,6 +64,11 @@ export async function createJobApplications(data: JobApplicationData) {
   }
 
   // Create jobApplication
+  const maxOrder = (await JobApplication.findOne({ columnId })
+    .sort({ order: -1 })
+    .select("order")
+    .lean()) as { order: number } | null;
+
   const jobApplication = await JobApplication.create({
     company,
     position,
@@ -76,6 +81,6 @@ export async function createJobApplications(data: JobApplicationData) {
     tags: tags || [],
     description,
     status: "applied",
-    order: ""
-  })
+    order: "",
+  });
 }
