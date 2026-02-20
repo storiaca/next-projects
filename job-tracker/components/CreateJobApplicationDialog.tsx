@@ -14,6 +14,10 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useState } from "react";
+import {
+  createJobApplication,
+  createJobApplications,
+} from "@/lib/actions/job-applicatons";
 
 interface CreateJobApplicationDialogProps {
   columnId: string;
@@ -42,8 +46,17 @@ export default function CreateJobApplicationDialog({
     e.preventDefault();
 
     try {
-      
+      const result = await createJobApplication({
+        ...formData,
+        columnId,
+        boardId,
+        tags: formData.tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag.length > 0),
+      });
     } catch (error) {
+      console.log(error);
       
     }
   }
@@ -150,7 +163,9 @@ export default function CreateJobApplicationDialog({
                 id="notes"
                 rows={4}
                 value={formData.notes}
-                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, notes: e.target.value })
+                }
               />
             </div>
           </div>
