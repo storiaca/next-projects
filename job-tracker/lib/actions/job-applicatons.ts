@@ -13,6 +13,7 @@ interface JobApplicationData {
   jobUrl?: string;
   columnId: string;
   boardId: string;
+  userId: string;
   tags?: string[];
   description?: string;
 }
@@ -78,6 +79,7 @@ export async function createJobApplication(data: JobApplicationData) {
     jobUrl,
     columnId,
     boardId,
+    userId: session.user.id,
     tags: tags || [],
     description,
     status: "applied",
@@ -88,5 +90,5 @@ export async function createJobApplication(data: JobApplicationData) {
     $push: { jobApplications: jobApplication._id },
   });
 
-  return { data: jobApplication };
+  return { data: JSON.parse(JSON.stringify(jobApplication))  };
 }
