@@ -20,6 +20,7 @@ import {
 import { Button } from "./ui/button";
 import CreateJobApplicationDialog from "./CreateJobApplicationDialog";
 import JobApplicationCard from "./JobApplicationCard";
+import { useBoard } from "@/lib/hooks/useBoards";
 
 interface KanbanBoardProps {
   board: Board;
@@ -58,18 +59,18 @@ function DroppableColumn({
   column,
   config,
   boardId,
-  sortedColumns
+  sortedColumns,
 }: {
   column: Column;
   config: ColConfig;
   boardId: string;
-  sortedColumns: Column[]
+  sortedColumns: Column[];
 }) {
   const sortedJobs =
     column.jobApplications?.sort((a, b) => a.order - b.order) || [];
 
   //console.log(sortedJobs);
-  
+
   return (
     <Card className="min-w-75 shrink-0 shadow-md p-0">
       <CardHeader
@@ -103,8 +104,8 @@ function DroppableColumn({
       </CardHeader>
       <CardContent className="space-y-2 pt-4 bg-gray-50/50 min-h-100 rounded-b-lg">
         {sortedJobs.map((job) => (
-          <SortableJobCard 
-            key={job._id} 
+          <SortableJobCard
+            key={job._id}
             job={{ ...job, columnId: job.columnId || column._id }}
             columns={sortedColumns}
           />
@@ -115,16 +116,25 @@ function DroppableColumn({
   );
 }
 
-function SortableJobCard({job, columns}: {job: JobApplication; columns: Column[];}) {
-  return <div>
-    <JobApplicationCard job={job} columns={columns}/>
-  </div>
+function SortableJobCard({
+  job,
+  columns,
+}: {
+  job: JobApplication;
+  columns: Column[];
+}) {
+  return (
+    <div>
+      <JobApplicationCard job={job} columns={columns} />
+    </div>
+  );
 }
 
 export default function KanbanBoard({ board, userId }: KanbanBoardProps) {
-  const columns = board.columns;
-  const sortedColumns =
-    columns?.sort((a, b) => a.order - b.order) || [];
+  // const columns = board.columns;
+  const { columns, moveJob } = useBoard(board);
+  const sortedColumns = columns?.sort((a, b) => a.order - b.order) || [];
+
   return (
     <>
       <div>

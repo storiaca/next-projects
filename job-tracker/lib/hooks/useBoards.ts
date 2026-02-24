@@ -8,5 +8,9 @@ export function useBoard(initialBoard?: Board | null) {
   const [columns, setColumns] = useState<Column[]>(initialBoard?.columns || []);
   const [error, setError] = useState<string | null>(null);
 
-  return { board, columns, error };
+  async function moveJob(jobApplicationId: string, newColumnId: string, newOrder: number) {
+
+  }
+
+  return { board, columns, error, moveJob };
 }
