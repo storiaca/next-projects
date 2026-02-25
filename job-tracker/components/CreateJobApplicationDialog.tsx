@@ -15,7 +15,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useState } from "react";
 import { createJobApplication } from "@/lib/actions/job-applicatons";
-import { log } from "console";
+
 
 interface CreateJobApplicationDialogProps {
   columnId: string;
@@ -52,6 +52,7 @@ export default function CreateJobApplicationDialog({
           .split(",")
           .map((tag) => tag.trim())
           .filter((tag) => tag.length > 0),
+        userId: ""
       });
 
       if (!result.error) {
