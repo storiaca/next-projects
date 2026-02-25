@@ -155,7 +155,7 @@ export async function updateJobAppliaction(
     });
 
     const jobsInTargetColumn = await JobApplication.find({
-      columndId: newColumnId,
+      columnId: newColumnId,
       _id: { $ne: id },
     })
       .sort({ order: 1 })
@@ -188,5 +188,22 @@ export async function updateJobAppliaction(
     await Column.findByIdAndUpdate(newColumnId, {
       $push: { jobAplication: id },
     });
-  } 
+  } else if (order !== undefined && order !== null) {
+    const otherJobsInColumn = await JobApplication.find({
+      columnId: currentColumnId,
+      _id: { $ne: id },
+    })
+      .sort({ order: 1 })
+      .lean();
+
+    const currentJobOrder = jobApplication.order || 0;
+    const currentPositionIndex = otherJobsInColumn.findIndex(
+      (job) => job.order > currentJobOrder,
+    );
+
+    const oldPositionIndex =
+      currentPositionIndex === otherJobsInColumn.length - 1
+        ? otherJobsInColumn.length
+        : currentPositionIndex;
+  }
 }
