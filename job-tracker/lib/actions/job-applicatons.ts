@@ -205,5 +205,34 @@ export async function updateJobAppliaction(
       currentPositionIndex === otherJobsInColumn.length - 1
         ? otherJobsInColumn.length
         : currentPositionIndex;
+
+    const newOrderValue = order * 100;
+
+    if (order < oldPositionIndex) {
+      const jobsToShiftDown = otherJobsInColumn.slice(order, oldPositionIndex);
+
+      for (const job of jobsToShiftDown) {
+        await JobApplication.findByIdAndUpdate(job._id, {
+          $set: { order: job.order + 100 },
+        });
+      }
+    } else if (order > oldPositionIndex) {
+      const jobsToShiftUp = otherJobsInColumn.slice(oldPositionIndex, order);
+
+      for (const job of jobsToShiftUp) {
+        const newOrder = Math.max(0, job.order - 100);
+        await JobApplication.findByIdAndUpdate(job._id, {
+          $set: { order: newOrder },
+        });
+      }
+    }
+
+    updatesToApply.order = newOrderValue;
   }
+
+  const updated = await JobApplication.findByIdAndUpdate(id, updatesToApply, {
+    new: true,
+  });
+
+  return { data: JSON.parse(JSON.stringify(updated)) };
 }
