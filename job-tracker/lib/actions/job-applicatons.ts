@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache";
 import { getSession } from "../auth/auth";
 import connectDB from "../db";
 import { Board, Column, JobApplication } from "../models";
-import { error } from "console";
 
 interface JobApplicationData {
   company: string;
@@ -97,7 +96,7 @@ export async function createJobApplication(data: JobApplicationData) {
   return { data: JSON.parse(JSON.stringify(jobApplication)) };
 }
 
-export async function updateJobAppliaction(
+export async function updateJobApplication(
   id: string,
   updates: {
     company?: string;
@@ -186,7 +185,7 @@ export async function updateJobAppliaction(
     updatesToApply.order = newOrderValue;
 
     await Column.findByIdAndUpdate(newColumnId, {
-      $push: { jobAplication: id },
+      $push: { jobAplications: id },
     });
   } else if (order !== undefined && order !== null) {
     const otherJobsInColumn = await JobApplication.find({
@@ -233,6 +232,8 @@ export async function updateJobAppliaction(
   const updated = await JobApplication.findByIdAndUpdate(id, updatesToApply, {
     new: true,
   });
+
+  revalidatePath("/dashboard");
 
   return { data: JSON.parse(JSON.stringify(updated)) };
 }
