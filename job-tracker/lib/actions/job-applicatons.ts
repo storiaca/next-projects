@@ -260,7 +260,7 @@ export async function deleteJobApplication(id: string) {
     $pull: { jobApplications: id },
   });
 
-  await JobApplication.deleteOne({_id: id})
+  await JobApplication.deleteOne({ _id: id });
 
-  return {sucess: true}
+  return { success: true };
 }
