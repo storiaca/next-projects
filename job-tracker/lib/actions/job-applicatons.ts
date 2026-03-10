@@ -261,6 +261,8 @@ export async function deleteJobApplication(id: string) {
   });
 
   await JobApplication.deleteOne({ _id: id });
+  
+  revalidatePath("/dashboard")
 
   return { success: true };
 }

@@ -24,7 +24,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
-import { updateJobApplication } from "@/lib/actions/job-applicatons";
+import { deleteJobApplication, updateJobApplication } from "@/lib/actions/job-applicatons";
 
 interface JobApplicationCardProps {
   job: JobApplication;
@@ -47,6 +47,18 @@ export default function JobApplicationCard({
     tags: job.tags?.join(", ") || "",
     description: job.description || "",
   });
+
+  async function handleDelete() {
+    try {
+      const result = await deleteJobApplication(job._id);
+
+      if(result.error) {
+        console.error("Failed to delete job application: ", result.error)
+      }
+    } catch (error) {
+      console.error("Failed to delete job application: ", error);
+    }
+  }
 
   async function handleMove(newColumnId: string) {
     try {
@@ -141,7 +153,7 @@ export default function JobApplicationCard({
                         ))}
                     </>
                   )}
-                  <DropdownMenuItem className="text-destructive">
+                  <DropdownMenuItem className="text-destructive" onClick={() => handleDelete()}>
                     <Trash2 className="mr-2 h-4 w-4" />
                     Delete
                   </DropdownMenuItem>
