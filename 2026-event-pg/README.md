@@ -4,6 +4,10 @@
 
 <https://www.youtube.com/watch?v=gh2L-nNXDsY&t=2970s>
 
+## Code
+
+<https://github.com/machadop1407/event-planner-nextjs-course>
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
