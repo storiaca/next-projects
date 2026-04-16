@@ -28,14 +28,20 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <header>
-          <div><Link href={"/"}>Event Planner</Link></div>
-          <nav>
-            <Link>Dashboard</Link>
-          </nav>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <header className="border-b border-[--border] bg-surface/90 backdrop-blur">
+          <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
+            <Link className="text-sm font-semibold tracking-wide" href={"/"}>
+              Event Planner
+            </Link>
+            <nav className="flex items-center gap-4">
+              <Link className="text-sm text-muted" href={"/dashboard"}>
+                Dashboard
+              </Link>
+            </nav>
+          </div>
         </header>
-        {children}
+        <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-8">{children}</main>
       </body>
     </html>
   );
