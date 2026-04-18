@@ -4,6 +4,10 @@
 
 <https://www.youtube.com/watch?v=QIuR2_pKFXA&t=299s>
 
+## Tutorial guide
+
+<https://www.prisma.io/docs/ai/tutorials/typefully-clone?utm_term=devrel>
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
