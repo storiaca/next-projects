@@ -6,16 +6,43 @@ export default function TweetTransformer() {
   const [draft, setDraft] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const charCount = draft.length;
   const isDisabled = charCount === 0 || isLoading;
 
   const handleTransform = async () => {
+    // Reset error and result states
+    setError("");
+    setResult("");
     setIsLoading(true);
-    console.log("Transform button clicked with draft:", draft);
-    // TODO: Integrate with API when ready
-    // For now, just log the action
-    setIsLoading(false);
+
+    try {
+      // Call transform API
+      const response = await fetch("/api/transform", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ draft }),
+      });
+
+      // Check if request was successful
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      // Parse and set the transformed tweet
+      const data = await response.json();
+      setResult(data.transformed);
+    } catch (err) {
+      // Set error message on failure
+      const errorMessage = err instanceof Error ? err.message : "Unknown error";
+      setError(`Failed to transform tweet: ${errorMessage}`);
+    } finally {
+      // Always set loading to false
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -46,6 +73,9 @@ export default function TweetTransformer() {
       >
         {isLoading ? "Transforming..." : "Transform"}
       </button>
+
+      {/* Error Message */}
+      {error && <div className="text-sm text-red-500 px-2 py-1">{error}</div>}
 
       {/* Output Section */}
       {result && (
