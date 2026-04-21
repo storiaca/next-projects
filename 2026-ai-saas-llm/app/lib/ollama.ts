@@ -3,8 +3,8 @@
  * Communicates with local Ollama instance for text generation
  */
 
-const OLLAMA_BASE_URL = "http://localhost:11434";
-const OLLAMA_MODEL = "gemma3:4b";
+const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || "";
+const OLLAMA_MODEL = process.env.OLLAMA_MODEL || "";
 
 /**
  * Request type for Ollama API
