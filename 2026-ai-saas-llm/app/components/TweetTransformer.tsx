@@ -1,12 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ContextButton, ContextPanel } from "./ContextSettings";
+import { FilterButton, FilterPanel, Filters } from "./FilterOptions";
+
+type OpenPanel = "none" | "context" | "filters";
 
 export default function TweetTransformer() {
   const [draft, setDraft] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [openPanel, setOpenPanel] = useState<OpenPanel>("none");
+  const [hasContext, setHasContext] = useState(false);
+  const [filters, setFilters] = useState<Filters>({
+    maxChars: 280,
+    emojiMode: "few",
+  });
+
+  // Check for context on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("TweetSmith-context");
+    setHasContext(!!saved);
+  }, []);
+
+  const handleToggleContext = () => {
+    setOpenPanel(openPanel === "context" ? "none" : "context");
+  };
+
+  const handleToggleFilters = () => {
+    setOpenPanel(openPanel === "filters" ? "none" : "filters");
+  };
+
+  const handleContextChange = (context: string) => {
+    setHasContext(!!context);
+  };
+
+  const handleFiltersChange = (newFilters: Filters) => {
+    setFilters(newFilters);
+  };
 
   const charCount = draft.length;
   const isDisabled = charCount === 0 || isLoading;
@@ -18,13 +50,21 @@ export default function TweetTransformer() {
     setIsLoading(true);
 
     try {
+      // Get context from localStorage
+      const context = localStorage.getItem("TweetSmith-context") || "";
+
       // Call transform API
       const response = await fetch("/api/transform", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ draft }),
+        body: JSON.stringify({
+          draft,
+          maxChars: filters.maxChars,
+          emojiMode: filters.emojiMode,
+          context,
+        }),
       });
 
       // Check if request was successful
@@ -47,6 +87,28 @@ export default function TweetTransformer() {
 
   return (
     <div className="w-full max-w-md space-y-6">
+      {/* Settings Row */}
+      <div className="flex gap-2">
+        <ContextButton
+          isOpen={openPanel === "context"}
+          onToggle={handleToggleContext}
+          hasContext={hasContext}
+        />
+        <FilterButton
+          isOpen={openPanel === "filters"}
+          onToggle={handleToggleFilters}
+          filters={filters}
+        />
+      </div>
+
+      {/* Panels */}
+      {openPanel === "context" && (
+        <ContextPanel onContextChange={handleContextChange} />
+      )}
+      {openPanel === "filters" && (
+        <FilterPanel filters={filters} onFiltersChange={handleFiltersChange} />
+      )}
+
       {/* Input Section */}
       <div className="space-y-3">
         <label className="block text-xs font-semibold tracking-widest text-[#888888] uppercase">
