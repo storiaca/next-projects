@@ -1,3 +1,4 @@
+import Image from "next/image";
 import TweetTransformer from "./components/TweetTransformer";
 
 export default function Home() {
@@ -6,12 +7,16 @@ export default function Home() {
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-16 sm:py-24">
         <div className="w-full max-w-md space-y-12 flex flex-col items-center">
           {/* Header */}
-          <div className="space-y-2 text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-[#fafafa]">
-              TweetSmith
-            </h1>
+          <div className="flex flex-col items-center space-y-2 text-center">
+            <Image
+              src="/icon-logo.png"
+              alt="TweetSmith Logo"
+              width={80}
+              height={80}
+              className="mb-3"
+            />
             <p className="text-sm text-[#888888] tracking-wide">
-              Transform your tweets with intelligence
+              polish your tweets with AI
             </p>
           </div>
 
