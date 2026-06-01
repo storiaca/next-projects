@@ -75,3 +75,5 @@ export async function generateWithOllama(prompt: string): Promise<string> {
     throw new Error("Failed to generate with Ollama: Unknown error");
   }
 }
+// 1:07:32
+// 10. Add Save Functionality
