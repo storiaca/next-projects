@@ -4,6 +4,10 @@
 
 <https://www.youtube.com/watch?v=otXvVyIcixU&t=2031sS>
 
+## Code
+
+<https://github.com/machadop1407/threadly-app/tree/main>
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
