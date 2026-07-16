@@ -1,5 +1,8 @@
+import { Input } from "@base-ui/react";
 import { Search } from "lucide-react";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { buttonVariants } from "../ui/button";
 
 export default function Navbar() {
   return (
@@ -19,10 +22,30 @@ export default function Navbar() {
           </span>
           <span className="text-lg">Threadly</span>
         </Link>
-        <div className="">
+        <div className="relative mx-auto hidden max-w-xl flex-1 md:block">
           <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            readOnly
+            placeholder="Search posts..."
+            className="h-10 w-full rounded-full border-border bg-card pl-10 pr-16 dtext-sm"
+            aria-label="Search posts"
+          />
+        </div>
+        <div className="ml-auto flex items-center gap-2">
+          <Link
+            href={"/auth/sign-in"}
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "default" }),
+            )}
+          >
+            Log In
+          </Link>
+          <Link href={"/auth/sign-up"} className={cn(buttonVariants())}>
+            Sign In
+          </Link>
         </div>
       </div>
     </header>
   );
 }
+// 20:35
