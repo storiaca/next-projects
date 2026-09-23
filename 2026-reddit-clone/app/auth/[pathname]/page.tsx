@@ -8,10 +8,9 @@ export default async function AuthPage({
   const { pathname } = await params;
   return (
     <div className="flex min-h-[100dhv] w-full flex-col items-center justify-center px-4 py-8">
-      <div className="">
+      <div className="w-full max-w-md">
         <AuthView pathname={pathname} />
       </div>
-      <h1>Auth page</h1>
     </div>
   );
 }
