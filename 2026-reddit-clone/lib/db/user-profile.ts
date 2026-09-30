@@ -1,3 +1,4 @@
+import { prisma } from "../prisma";
 import { User } from "../types";
 
 function generateUsername(name: string): string {
@@ -18,5 +19,7 @@ export async function ensureUserProfile(neon: {
   name: string;
   image?: string | null;
 }): Promise<User> {
-  const existing = await prisma.
+  const existing = await prisma.userProfile.findUnique({
+    where: { id: neon.id },
+  });
 }
