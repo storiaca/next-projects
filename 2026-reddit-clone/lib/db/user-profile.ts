@@ -22,4 +22,24 @@ export async function ensureUserProfile(neon: {
   const existing = await prisma.userProfile.findUnique({
     where: { id: neon.id },
   });
+
+  if (existing) {
+    return {
+      id: existing.id,
+      username: existing.username,
+      displayName: neon.name,
+      avatarUrl: neon.image ?? undefined,
+    };
+  }
+
+  const row = await prisma.userProfile.create({
+    data: { id: neon.id, username: generateUsername(neon.name) },
+  });
+
+  return {
+    id: row.id,
+    username: row.username,
+    displayName: neon.name,
+    avatarUrl: neon.image ?? undefined,
+  };
 }
