@@ -13,3 +13,9 @@ export const getCurrentUserId = cache(async (): Promise<string | undefined> => {
 
   return session?.user.id;
 });
+
+export const getSessionUser = cache(async (): Promise<User | null>) => {
+  const { data: session } = await auth.getSession();
+  if (!session?.user) return null;
+  return ensureUserProfile(session.user)
+}
