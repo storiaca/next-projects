@@ -1,5 +1,7 @@
 import { createNeonAuth } from "@neondatabase/auth/next/server";
 import { cache } from "react";
+import { User } from "./types";
+import { ensureUserProfile } from "./db/user-profile";
 
 export const auth = createNeonAuth({
   baseUrl: process.env.NEON_AUTH_BASE_URL!,
@@ -14,8 +16,8 @@ export const getCurrentUserId = cache(async (): Promise<string | undefined> => {
   return session?.user.id;
 });
 
-export const getSessionUser = cache(async (): Promise<User | null>) => {
+export const getSessionUser = cache(async (): Promise<User | null> => {
   const { data: session } = await auth.getSession();
   if (!session?.user) return null;
-  return ensureUserProfile(session.user)
-}
+  return ensureUserProfile(session.user);
+});
